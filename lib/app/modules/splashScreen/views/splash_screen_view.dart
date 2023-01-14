@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tokopedia/config/warna.dart';
 
+import '../../../routes/app_pages.dart';
 import '../controllers/splash_screen_controller.dart';
 
 class SplashScreenView extends GetView<SplashScreenController> {
@@ -81,7 +82,7 @@ class SplashScreenView extends GetView<SplashScreenController> {
                     style: TextStyle(fontSize: 15, color: Colors.white),
                   ),
                   InkWell(
-                    // onTap: () => Get.toNamed(Routes.),
+                    onTap: () => Get.toNamed(Routes.LOGIN),
                     child: Text(
                       "Login",
                       style: TextStyle(fontSize: 15, color: Colors.white),
