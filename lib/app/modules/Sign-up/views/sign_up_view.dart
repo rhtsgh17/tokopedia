@@ -115,15 +115,6 @@ class SignUpView extends GetView<SignUpController> {
                                     borderRadius: BorderRadius.circular(10)))),
                       ),
                       Container(
-                        alignment: Alignment.topRight,
-                        margin: EdgeInsets.only(bottom: 20),
-                        child: TextButton(
-                            onPressed: () {},
-                            child: Text("Forgot Password",
-                                style: TextStyle(
-                                    fontSize: 15, color: Colors.grey))),
-                      ),
-                      Container(
                         width: lebar,
                         height: tinggi * 0.08,
                         margin: EdgeInsets.only(bottom: 20),
