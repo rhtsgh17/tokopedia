@@ -8,6 +8,8 @@ import 'package:tokopedia/app/modules/Sign-up/bindings/sign_up_binding.dart';
 import 'package:tokopedia/app/modules/Sign-up/views/sign_up_view.dart';
 import 'package:tokopedia/app/modules/Verification/bindings/verification_binding.dart';
 import 'package:tokopedia/app/modules/Verification/views/verification_view.dart';
+import 'package:tokopedia/app/modules/detail/bindings/detail_binding.dart';
+import 'package:tokopedia/app/modules/detail/views/detail_view.dart';
 import 'package:tokopedia/app/modules/home/bindings/home_binding.dart';
 import 'package:tokopedia/app/modules/home/views/home_view.dart';
 import 'package:tokopedia/app/modules/login/bindings/login_binding.dart';
@@ -22,7 +24,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.SPLASH_SCREEN;
+  static const INITIAL = Routes.DETAIL;
 
   static final routes = [
     GetPage(
@@ -59,6 +61,11 @@ class AppPages {
       name: _Paths.NEW_PASSWORD,
       page: () => NewPasswordView(),
       binding: NewPasswordBinding(),
+    ),
+    GetPage(
+      name: _Paths.DETAIL,
+      page: () => DetailView(),
+      binding: DetailBinding(),
     ),
   ];
 }

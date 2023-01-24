@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-
+import 'package:iconly/iconly.dart';
 import '../../../../config/warna.dart';
 
 import '../../../routes/app_pages.dart';
@@ -25,6 +25,7 @@ class SignUpView extends GetView<SignUpController> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      Icon(IconlyLight.arrow_left, size: 24),
                       Container(
                         margin: EdgeInsets.only(bottom: 20),
                         child: Text("Create Account",

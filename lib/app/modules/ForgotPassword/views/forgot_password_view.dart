@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:iconly/iconly.dart';
 import 'package:tokopedia/app/routes/app_pages.dart';
 
 import '../../../../config/warna.dart';
@@ -21,6 +22,7 @@ class ForgotPasswordView extends GetView<ForgotPasswordController> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Icon(IconlyLight.arrow_left, size: 24),
             Container(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
