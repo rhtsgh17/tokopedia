@@ -90,6 +90,39 @@ class SplashScreenView extends GetView<SplashScreenController> {
                   ),
                 ],
               ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Container(
+              margin: EdgeInsets.only(bottom: 30),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  InkWell(
+                    onTap: () => Get.toNamed(Routes.LOGIN_WITHNO_TLP),
+                    child: Text(
+                      "Login Menggunakan No Telepon",
+                      style: TextStyle(fontSize: 15, color: Colors.white),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.only(bottom: 30),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  InkWell(
+                    onTap: () => Get.toNamed(Routes.HOME_ADMIN),
+                    child: Text(
+                      "Login ke home admin",
+                      style: TextStyle(fontSize: 15, color: Colors.white),
+                    ),
+                  ),
+                ],
+              ),
             )
           ],
         ),

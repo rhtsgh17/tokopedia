@@ -2,9 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class ForgotPasswordController extends GetxController {
-  //TODO: Implement ForgotPasswordController
-
-final showhidepw = true.obs;
+  TextEditingController email = TextEditingController();
+  final showhidepw = true.obs;
   changeEye() => showhidepw.toggle();
   final count = 0.obs;
   TextEditingController password = TextEditingController();

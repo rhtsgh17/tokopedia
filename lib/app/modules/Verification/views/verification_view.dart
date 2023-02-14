@@ -1,8 +1,11 @@
+import 'package:external_app_launcher/external_app_launcher.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
 import '../../../../config/warna.dart';
+// ignore: unused_import
+import '../../../routes/app_pages.dart';
 import '../controllers/verification_controller.dart';
 
 class VerificationView extends GetView<VerificationController> {
@@ -52,17 +55,24 @@ class VerificationView extends GetView<VerificationController> {
                   ),
                   Center(
                     child: Container(
-                      width: 180,
-                      height: tinggi * 0.08,
-                      margin: EdgeInsets.only(bottom: 20),
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(primary: bgLogin2),
-                        onPressed: () {},
-                        child: Text("Open Email App",
-                            style:
-                                TextStyle(color: Colors.white, fontSize: 18)),
-                      ),
-                    ),
+                        width: 180,
+                        height: tinggi * 0.08,
+                        margin: EdgeInsets.only(bottom: 20),
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(primary: bgLogin2),
+                          onPressed: () async {
+                            await LaunchApp.openApp(
+                              androidPackageName: 'com.google.android.gm',
+                              iosUrlScheme: 'googlegmail://',
+                              appStoreLink:
+                                  'itms-apps://apps.apple.com/us/app/gmail-email-by-google/id422689480',
+                              openStore: true,
+                            );
+                          },
+                          child: Text("Open Email App",
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 18)),
+                        )),
                   ),
                   SizedBox(
                     height: 30,

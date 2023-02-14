@@ -12,6 +12,11 @@ abstract class Routes {
   static const VERIFICATION = _Paths.VERIFICATION;
   static const NEW_PASSWORD = _Paths.NEW_PASSWORD;
   static const DETAIL = _Paths.DETAIL;
+  static const LOGIN_WITHNO_TLP = _Paths.LOGIN_WITHNO_TLP;
+  static const OTP_VERIVICATION = _Paths.OTP_VERIVICATION;
+  static const HOME_ADMIN = _Paths.HOME_ADMIN;
+  static const SLIDER_DATA = _Paths.SLIDER_DATA;
+  static const UPDATE = _Paths.UPDATE;
 }
 
 abstract class _Paths {
@@ -23,4 +28,9 @@ abstract class _Paths {
   static const VERIFICATION = '/verification';
   static const NEW_PASSWORD = '/new-password';
   static const DETAIL = '/detail';
+  static const LOGIN_WITHNO_TLP = '/login-withno-tlp';
+  static const OTP_VERIVICATION = '/otp-verivication';
+  static const HOME_ADMIN = '/home-admin';
+  static const SLIDER_DATA = '/slider-data';
+  static const UPDATE = '/update';
 }

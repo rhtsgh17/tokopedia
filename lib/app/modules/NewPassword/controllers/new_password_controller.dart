@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class NewPasswordController extends GetxController {
-  //TODO: Implement NewPasswordController
 
    final showhidepw = true.obs;
   changeEye() => showhidepw.toggle();

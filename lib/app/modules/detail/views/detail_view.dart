@@ -1,4 +1,3 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -67,7 +66,7 @@ class DetailView extends GetView<DetailController> {
               Container(
                   height: 400,
                   width: lebar * 0.8,
-                  color: Colors.red,
+                  color: Colors.white,
                   // margin: EdgeInsets.symmetric(vertical: 20),
                   child: Image.asset(
                     "assets/image/parfum.png",
@@ -99,8 +98,9 @@ class DetailView extends GetView<DetailController> {
               Row(
                 children: [
                   Container(
+                    // width: 3,
                     margin: EdgeInsets.only(left: 40),
-                    child: Text("Mine. Perfumery ETHEREAL - 50ml Eau De Parfum",
+                    child: Text("Mine. Perfumery ETHEREAL-50ml Eau De Parfum",
                         style: TextStyle(
                             fontSize: 20, fontWeight: FontWeight.normal)),
                   ),
@@ -404,443 +404,454 @@ class DetailView extends GetView<DetailController> {
                 // spacing: 20,
                 // runSpacing: 20,
                 children: [
-                  Row(
-                    children: [
-                      Container(
-                        width: 158,
-                        height: 300,
-                        margin: EdgeInsets.only(
-                          left: 2,
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 158,
+                          height: 300,
+                          margin: EdgeInsets.only(
+                            left: 2,
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Image.asset("assets/image/pink.png"),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              Row(
+                                children: [
+                                  SizedBox(
+                                    width: 5,
+                                  ),
+                                  Row(
+                                    children: [
+                                      Column(
+                                        children: [
+                                          SizedBox(
+                                            height: 8,
+                                          ),
+                                          Row(
+                                            children: [
+                                              Container(
+                                                width: 100,
+                                                child: Text(
+                                                  "Mine. Perfumery FLORAISON ...",
+                                                  style: TextStyle(
+                                                      fontSize: 12,
+                                                      fontWeight:
+                                                          FontWeight.normal),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          SizedBox(
+                                            height: 8,
+                                          ),
+                                          Container(
+                                            child: Text(
+                                              "Rp 370.000",
+                                              style: TextStyle(
+                                                  fontSize: 13,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  )
+                                ],
+                              ),
+                              SizedBox(
+                                height: 8,
+                              ),
+                              Row(
+                                children: [
+                                  SizedBox(
+                                    width: 5,
+                                  ),
+                                  Container(
+                                    height: 18,
+                                    width: 45,
+                                    color: atas2,
+                                    child: Text(
+                                      "Cashback",
+                                      style:
+                                          TextStyle(fontSize: 10, color: atas),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 5,
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: 7,
+                              ),
+                              Row(
+                                children: [
+                                  SizedBox(
+                                    width: 5,
+                                  ),
+                                  Container(
+                                      child: Image.asset(
+                                          "assets/image/power.png")),
+                                  Container(
+                                    child: Text("Kab.Tangerang"),
+                                  )
+                                ],
+                              ),
+                              SizedBox(
+                                height: 8,
+                              ),
+                              Row(
+                                children: [
+                                  SizedBox(
+                                    width: 5,
+                                  ),
+                                  Container(
+                                    child:
+                                        Image.asset("assets/image/Vector.png"),
+                                  ),
+                                  SizedBox(
+                                    width: 5,
+                                  ),
+                                  Container(
+                                    child: Text(
+                                      "4.8",
+                                      style: TextStyle(
+                                        fontSize: 10,
+                                        color: Colors.grey,
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 5,
+                                  ),
+                                  Container(
+                                    child: Text(
+                                      "|",
+                                      style: TextStyle(
+                                        fontSize: 10,
+                                        color: Colors.grey,
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 5,
+                                  ),
+                                  Container(
+                                    child: Text(
+                                      "Terjual 312",
+                                      style: TextStyle(
+                                        fontSize: 10,
+                                        color: Colors.grey,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Image.asset("assets/image/pink.png"),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Row(
-                              children: [
-                                SizedBox(
-                                  width: 5,
-                                ),
-                                Row(
-                                  children: [
-                                    Column(
-                                      children: [
-                                        SizedBox(
-                                          height: 8,
-                                        ),
-                                        Row(
-                                          children: [
-                                            Container(
-                                              width: 100,
-                                              child: Text(
-                                                "Mine. Perfumery FLORAISON ...",
-                                                style: TextStyle(
+                        Container(
+                          width: 158,
+                          height: 300,
+                          margin: EdgeInsets.only(left: 10),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Image.asset("assets/image/hijau.png"),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              Row(
+                                children: [
+                                  SizedBox(
+                                    width: 5,
+                                  ),
+                                  Row(
+                                    children: [
+                                      Column(
+                                        children: [
+                                          SizedBox(
+                                            height: 8,
+                                          ),
+                                          Row(
+                                            children: [
+                                              Container(
+                                                width: 100,
+                                                child: Text(
+                                                  "Mine. Perfumery TATMI - 50ml ...",
+                                                  style: TextStyle(
                                                     fontSize: 12,
                                                     fontWeight:
-                                                        FontWeight.normal),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        SizedBox(
-                                          height: 8,
-                                        ),
-                                        Container(
-                                          child: Text(
-                                            "Rp 370.000",
-                                            style: TextStyle(
-                                                fontSize: 13,
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                )
-                              ],
-                            ),
-                            SizedBox(
-                              height: 8,
-                            ),
-                            Row(
-                              children: [
-                                SizedBox(
-                                  width: 5,
-                                ),
-                                Container(
-                                  height: 18,
-                                  width: 45,
-                                  color: atas2,
-                                  child: Text(
-                                    "Cashback",
-                                    style: TextStyle(fontSize: 10, color: atas),
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 5,
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: 7,
-                            ),
-                            Row(
-                              children: [
-                                SizedBox(
-                                  width: 5,
-                                ),
-                                Container(
-                                    child:
-                                        Image.asset("assets/image/power.png")),
-                                Container(
-                                  child: Text("Kab.Tangerang"),
-                                )
-                              ],
-                            ),
-                            SizedBox(
-                              height: 8,
-                            ),
-                            Row(
-                              children: [
-                                SizedBox(
-                                  width: 5,
-                                ),
-                                Container(
-                                  child: Image.asset("assets/image/Vector.png"),
-                                ),
-                                SizedBox(
-                                  width: 5,
-                                ),
-                                Container(
-                                  child: Text(
-                                    "4.8",
-                                    style: TextStyle(
-                                      fontSize: 10,
-                                      color: Colors.grey,
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 5,
-                                ),
-                                Container(
-                                  child: Text(
-                                    "|",
-                                    style: TextStyle(
-                                      fontSize: 10,
-                                      color: Colors.grey,
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 5,
-                                ),
-                                Container(
-                                  child: Text(
-                                    "Terjual 312",
-                                    style: TextStyle(
-                                      fontSize: 10,
-                                      color: Colors.grey,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        width: 158,
-                        height: 300,
-                        margin: EdgeInsets.only(left: 10),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Image.asset("assets/image/hijau.png"),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Row(
-                              children: [
-                                SizedBox(
-                                  width: 5,
-                                ),
-                                Row(
-                                  children: [
-                                    Column(
-                                      children: [
-                                        SizedBox(
-                                          height: 8,
-                                        ),
-                                        Row(
-                                          children: [
-                                            Container(
-                                              width: 100,
-                                              child: Text(
-                                                "Mine. Perfumery TATMI - 50ml ...",
-                                                style: TextStyle(
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.normal,
+                                                        FontWeight.normal,
+                                                  ),
                                                 ),
                                               ),
-                                            ),
-                                          ],
-                                        ),
-                                        SizedBox(
-                                          height: 8,
-                                        ),
-                                        Container(
-                                          child: Text(
-                                            "Rp 450.000",
-                                            style: TextStyle(
-                                                fontSize: 13,
-                                                fontWeight: FontWeight.bold),
+                                            ],
                                           ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                )
-                              ],
-                            ),
-                            SizedBox(
-                              height: 8,
-                            ),
-                            Row(
-                              children: [
-                                SizedBox(
-                                  width: 5,
-                                ),
-                                Container(
-                                  height: 18,
-                                  width: 45,
-                                  color: atas2,
-                                  child: Text(
-                                    "Cashback",
-                                    style: TextStyle(fontSize: 10, color: atas),
+                                          SizedBox(
+                                            height: 8,
+                                          ),
+                                          Container(
+                                            child: Text(
+                                              "Rp 450.000",
+                                              style: TextStyle(
+                                                  fontSize: 13,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  )
+                                ],
+                              ),
+                              SizedBox(
+                                height: 8,
+                              ),
+                              Row(
+                                children: [
+                                  SizedBox(
+                                    width: 5,
                                   ),
-                                ),
-                                SizedBox(
-                                  width: 5,
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: 7,
-                            ),
-                            Row(
-                              children: [
-                                SizedBox(
-                                  width: 5,
-                                ),
-                                Container(
+                                  Container(
+                                    height: 18,
+                                    width: 45,
+                                    color: atas2,
+                                    child: Text(
+                                      "Cashback",
+                                      style:
+                                          TextStyle(fontSize: 10, color: atas),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 5,
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: 7,
+                              ),
+                              Row(
+                                children: [
+                                  SizedBox(
+                                    width: 5,
+                                  ),
+                                  Container(
+                                      child: Image.asset(
+                                          "assets/image/power.png")),
+                                  Container(
+                                    child: Text("Kab.Tangerang"),
+                                  )
+                                ],
+                              ),
+                              SizedBox(
+                                height: 8,
+                              ),
+                              Row(
+                                children: [
+                                  SizedBox(
+                                    width: 5,
+                                  ),
+                                  Container(
                                     child:
-                                        Image.asset("assets/image/power.png")),
-                                Container(
-                                  child: Text("Kab.Tangerang"),
-                                )
-                              ],
-                            ),
-                            SizedBox(
-                              height: 8,
-                            ),
-                            Row(
-                              children: [
-                                SizedBox(
-                                  width: 5,
-                                ),
-                                Container(
-                                  child: Image.asset("assets/image/Vector.png"),
-                                ),
-                                SizedBox(
-                                  width: 5,
-                                ),
-                                Container(
-                                  child: Text(
-                                    "4.9",
-                                    style: TextStyle(
-                                      fontSize: 10,
-                                      color: Colors.grey,
+                                        Image.asset("assets/image/Vector.png"),
+                                  ),
+                                  SizedBox(
+                                    width: 5,
+                                  ),
+                                  Container(
+                                    child: Text(
+                                      "4.9",
+                                      style: TextStyle(
+                                        fontSize: 10,
+                                        color: Colors.grey,
+                                      ),
                                     ),
                                   ),
-                                ),
-                                SizedBox(
-                                  width: 5,
-                                ),
-                                Container(
-                                  child: Text(
-                                    "|",
-                                    style: TextStyle(
-                                      fontSize: 10,
-                                      color: Colors.grey,
+                                  SizedBox(
+                                    width: 5,
+                                  ),
+                                  Container(
+                                    child: Text(
+                                      "|",
+                                      style: TextStyle(
+                                        fontSize: 10,
+                                        color: Colors.grey,
+                                      ),
                                     ),
                                   ),
-                                ),
-                                SizedBox(
-                                  width: 5,
-                                ),
-                                Container(
-                                  child: Text(
-                                    "Terjual 6 rb",
-                                    style: TextStyle(
-                                      fontSize: 10,
-                                      color: Colors.grey,
+                                  SizedBox(
+                                    width: 5,
+                                  ),
+                                  Container(
+                                    child: Text(
+                                      "Terjual 6 rb",
+                                      style: TextStyle(
+                                        fontSize: 10,
+                                        color: Colors.grey,
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ],
-                            ),
-                          ],
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                      Container(
-                        width: 158,
-                        height: 300,
-                        margin: EdgeInsets.only(left: 10),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Image.asset("assets/image/putih.png"),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Row(
-                              children: [
-                                SizedBox(
-                                  width: 5,
-                                ),
-                                Row(
-                                  children: [
-                                    Column(
-                                      children: [
-                                        SizedBox(
-                                          height: 8,
-                                        ),
-                                        Row(
-                                          children: [
-                                            Container(
-                                              width: 100,
-                                              child: Text(
-                                                "Mine. Perfumery LUCID DREA...",
-                                                style: TextStyle(
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.normal,
+                        Container(
+                          width: 168,
+                          height: 300,
+                          margin: EdgeInsets.only(left: 10),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Image.asset("assets/image/putih.png"),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              Row(
+                                children: [
+                                  SizedBox(
+                                    width: 5,
+                                  ),
+                                  Row(
+                                    children: [
+                                      Column(
+                                        children: [
+                                          SizedBox(
+                                            height: 8,
+                                          ),
+                                          Row(
+                                            children: [
+                                              Container(
+                                                width: 100,
+                                                child: Text(
+                                                  "Mine. Perfumery LUCID DREA...",
+                                                  style: TextStyle(
+                                                    fontSize: 12,
+                                                    fontWeight:
+                                                        FontWeight.normal,
+                                                  ),
                                                 ),
                                               ),
-                                            ),
-                                          ],
-                                        ),
-                                        SizedBox(
-                                          height: 8,
-                                        ),
-                                        Container(
-                                          child: Text(
-                                            "Rp 370.000",
-                                            style: TextStyle(
-                                                fontSize: 13,
-                                                fontWeight: FontWeight.bold),
+                                            ],
                                           ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                )
-                              ],
-                            ),
-                            SizedBox(
-                              height: 8,
-                            ),
-                            Row(
-                              children: [
-                                SizedBox(
-                                  width: 5,
-                                ),
-                                Container(
-                                  height: 18,
-                                  width: 45,
-                                  color: atas2,
-                                  child: Text(
-                                    "Cashback",
-                                    style: TextStyle(fontSize: 10, color: atas),
+                                          SizedBox(
+                                            height: 8,
+                                          ),
+                                          Container(
+                                            child: Text(
+                                              "Rp 370.000",
+                                              style: TextStyle(
+                                                  fontSize: 13,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  )
+                                ],
+                              ),
+                              SizedBox(
+                                height: 8,
+                              ),
+                              Row(
+                                children: [
+                                  SizedBox(
+                                    width: 5,
                                   ),
-                                ),
-                                SizedBox(
-                                  width: 5,
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: 7,
-                            ),
-                            Row(
-                              children: [
-                                SizedBox(
-                                  width: 5,
-                                ),
-                                Container(
+                                  Container(
+                                    height: 18,
+                                    width: 45,
+                                    color: atas2,
+                                    child: Text(
+                                      "Cashback",
+                                      style:
+                                          TextStyle(fontSize: 10, color: atas),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 5,
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: 7,
+                              ),
+                              Row(
+                                children: [
+                                  SizedBox(
+                                    width: 5,
+                                  ),
+                                  Container(
+                                      child: Image.asset(
+                                          "assets/image/power.png")),
+                                  Container(
+                                    child: Text("Kab.Bandung"),
+                                  )
+                                ],
+                              ),
+                              SizedBox(
+                                height: 8,
+                              ),
+                              Row(
+                                children: [
+                                  SizedBox(
+                                    width: 5,
+                                  ),
+                                  Container(
                                     child:
-                                        Image.asset("assets/image/power.png")),
-                                Container(
-                                  child: Text("Kab.Bandung"),
-                                )
-                              ],
-                            ),
-                            SizedBox(
-                              height: 8,
-                            ),
-                            Row(
-                              children: [
-                                SizedBox(
-                                  width: 5,
-                                ),
-                                Container(
-                                  child: Image.asset("assets/image/Vector.png"),
-                                ),
-                                SizedBox(
-                                  width: 5,
-                                ),
-                                Container(
-                                  child: Text(
-                                    "5.0",
-                                    style: TextStyle(
-                                      fontSize: 10,
-                                      color: Colors.grey,
+                                        Image.asset("assets/image/Vector.png"),
+                                  ),
+                                  SizedBox(
+                                    width: 5,
+                                  ),
+                                  Container(
+                                    child: Text(
+                                      "5.0",
+                                      style: TextStyle(
+                                        fontSize: 10,
+                                        color: Colors.grey,
+                                      ),
                                     ),
                                   ),
-                                ),
-                                SizedBox(
-                                  width: 5,
-                                ),
-                                Container(
-                                  child: Text(
-                                    "|",
-                                    style: TextStyle(
-                                      fontSize: 10,
-                                      color: Colors.grey,
+                                  SizedBox(
+                                    width: 5,
+                                  ),
+                                  Container(
+                                    child: Text(
+                                      "|",
+                                      style: TextStyle(
+                                        fontSize: 10,
+                                        color: Colors.grey,
+                                      ),
                                     ),
                                   ),
-                                ),
-                                SizedBox(
-                                  width: 5,
-                                ),
-                                Container(
-                                  child: Text(
-                                    "Terjual 312",
-                                    style: TextStyle(
-                                      fontSize: 10,
-                                      color: Colors.grey,
+                                  SizedBox(
+                                    width: 5,
+                                  ),
+                                  Container(
+                                    child: Text(
+                                      "Terjual 312",
+                                      style: TextStyle(
+                                        fontSize: 10,
+                                        color: Colors.grey,
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ],
-                            ),
-                          ],
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ],
               ),

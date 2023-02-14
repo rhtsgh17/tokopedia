@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SignUpController extends GetxController {
-  //TODO: Implement SignUpController
   final showhidepw = true.obs;
+
+  // get email => null;
   changeEye() => showhidepw.toggle();
   final count = 0.obs;
+  TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
-  
+
   @override
   void onInit() {
     super.onInit();
@@ -21,6 +23,4 @@ class SignUpController extends GetxController {
   @override
   void onClose() {}
   void increment() => count.value++;
-
- 
 }

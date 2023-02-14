@@ -1,7 +1,10 @@
+// ignore_for_file: unused_import
+
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:iconly/iconly.dart';
+import 'package:tokopedia/app/controllers/auth_controller_controller.dart';
 import 'package:tokopedia/app/routes/app_pages.dart';
 
 import '../../../../config/warna.dart';
@@ -10,6 +13,7 @@ import '../controllers/forgot_password_controller.dart';
 
 class ForgotPasswordView extends GetView<ForgotPasswordController> {
   final controller = Get.put(ForgotPasswordController());
+  final authController = Get.put(AuthControllerController());
   @override
   Widget build(BuildContext context) {
     double tinggi = MediaQuery.of(context).size.height;
@@ -48,6 +52,7 @@ class ForgotPasswordView extends GetView<ForgotPasswordController> {
                   Container(
                     margin: EdgeInsets.only(bottom: 20),
                     child: TextField(
+                        controller: controller.email,
                         keyboardType: TextInputType.emailAddress,
                         decoration: InputDecoration(
                             hintText: "Enter Your Email",
@@ -61,9 +66,8 @@ class ForgotPasswordView extends GetView<ForgotPasswordController> {
                     margin: EdgeInsets.only(bottom: 20),
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(primary: bgLogin2),
-                      onPressed: () {
-                        Get.toNamed(Routes.VERIFICATION);
-                      },
+                      onPressed: () =>
+                          authController.resetPassword(controller.email.text),
                       child: Text("Send Intructions",
                           style: TextStyle(color: Colors.white, fontSize: 18)),
                     ),

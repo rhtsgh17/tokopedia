@@ -5,9 +5,12 @@ import 'package:get/get.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 import 'package:tokopedia/config/warna.dart';
 
+import '../../../controllers/auth_controller_controller.dart';
+import '../../../routes/app_pages.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
+  final authController = Get.put(AuthControllerController());
   @override
   Widget build(BuildContext context) {
     double tinggi = MediaQuery.of(context).size.height;
@@ -48,7 +51,9 @@ class HomeView extends GetView<HomeController> {
                           ),
                           Image.asset("assets/image/shopping-cart_1.png"),
                           Image.asset("assets/image/Group_19.png"),
-                          Image.asset("assets/image/menu_1.png")
+                          TextButton(
+                              onPressed: () => authController.logout(),
+                              child: Image.asset("assets/image/menu_1.png"))
                         ]),
                   ),
                 ],
@@ -191,283 +196,300 @@ class HomeView extends GetView<HomeController> {
             ),
             Column(
               children: [
-                Row(
-                  children: [
-                    Container(
-                        width: lebar,
-                        height: tinggi * 0.4,
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: [
+                      Container(
+                          width: lebar,
+                          height: tinggi * 0.4,
 
-                        // color: Colors.black,
-                        margin: EdgeInsets.only(bottom: 30),
-                        decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                                begin: Alignment.topRight,
-                                end: Alignment.bottomLeft,
-                                colors: [
-                              Color(0xff01A0C6),
-                              Color(0xff01AA6C)
-                            ])),
-                        child: Row(
-                          children: [
-                            Container(
-                              margin: EdgeInsets.only(left: 5),
-                              child: Row(
-                                children: [
-                                  Image.asset("assets/image/kejar.png")
-                                ],
-                              ),
-                            ),
-                            Row(
+                          // color: Colors.black,
+                          margin: EdgeInsets.only(bottom: 30),
+                          decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                  begin: Alignment.topRight,
+                                  end: Alignment.bottomLeft,
+                                  colors: [
+                                Color(0xff01A0C6),
+                                Color(0xff01AA6C)
+                              ])),
+                          child: SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
                               children: [
                                 Container(
-                                  width: 148,
-                                  height: 245,
-                                  color: Colors.white,
-                                  margin: EdgeInsets.only(left: 70),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
+                                  margin: EdgeInsets.only(left: 5),
+                                  child: Row(
                                     children: [
-                                      Image.asset("assets/image/masker.png"),
-                                      SizedBox(
-                                        height: 5,
-                                      ),
-                                      Row(
-                                        children: [
-                                          SizedBox(
-                                            width: 5,
-                                          ),
-                                          Container(
-                                            child: Text(
-                                              "Rp 1.000",
-                                              style: TextStyle(
-                                                  fontSize: 10,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      SizedBox(
-                                        height: 5,
-                                      ),
-                                      Row(
-                                        children: [
-                                          SizedBox(
-                                            width: 5,
-                                          ),
-                                          Container(
-                                            height: 13,
-                                            width: 25,
-                                            color: merah1,
-                                            child: Text(
-                                              "92%",
-                                              style: TextStyle(
-                                                  fontSize: 10, color: merah),
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            width: 5,
-                                          ),
-                                          Container(
-                                            child: Text(
-                                              "Rp 12.546",
-                                              style: TextStyle(
-                                                  fontSize: 10,
-                                                  color: Colors.grey,
-                                                  decoration: TextDecoration
-                                                      .lineThrough),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      SizedBox(
-                                        height: 7,
-                                      ),
-                                      Row(
-                                        children: [
-                                          SizedBox(
-                                            width: 5,
-                                          ),
-                                          Container(
-                                              child: Image.asset(
-                                                  "assets/image/benar.png")),
-                                          Container(
-                                            child: Text("Kab.Tangerang"),
-                                          )
-                                        ],
-                                      ),
-                                      SizedBox(
-                                        height: 7,
-                                      ),
-                                      Row(
-                                        children: [
-                                          SizedBox(
-                                            width: 4,
-                                          ),
-                                          Container(
-                                            margin: EdgeInsets.only(
-                                                bottom: 5, top: 10),
-                                            child: StepProgressIndicator(
-                                              totalSteps: 100,
-                                              currentStep: 80,
-                                              size: 5,
-                                              padding: 0,
-                                              selectedColor:
-                                                  Colors.red.shade600,
-                                              unselectedColor:
-                                                  Color(0xffeeeeee),
-                                              roundedEdges: Radius.circular(2),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      Row(
-                                        children: [
-                                          Container(
-                                            margin: EdgeInsets.only(left: 6),
-                                            child: Text(
-                                              "segera habis",
-                                              style: TextStyle(
-                                                  fontSize: 10,
-                                                  fontWeight:
-                                                      FontWeight.normal),
-                                            ),
-                                          ),
-                                        ],
-                                      )
+                                      Image.asset("assets/image/kejar.png")
                                     ],
                                   ),
                                 ),
-                              ],
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Row(
-                              children: [
-                                Container(
-                                  width: 148,
-                                  height: 245,
-                                  color: Colors.white,
-                                  margin: EdgeInsets.only(left: 10),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      Image.asset("assets/image/indomie.png"),
-                                      SizedBox(
-                                        height: 5,
-                                      ),
-                                      Row(
+                                Row(
+                                  children: [
+                                    Container(
+                                      width: 148,
+                                      height: 245,
+                                      color: Colors.white,
+                                      margin: EdgeInsets.only(left: 70),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
                                         children: [
+                                          Image.asset(
+                                              "assets/image/masker.png"),
                                           SizedBox(
-                                            width: 5,
+                                            height: 5,
                                           ),
-                                          Container(
-                                            child: Text(
-                                              "Rp 103.000",
-                                              style: TextStyle(
-                                                fontSize: 10,
-                                                fontWeight: FontWeight.bold,
+                                          Row(
+                                            children: [
+                                              SizedBox(
+                                                width: 5,
                                               ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      SizedBox(
-                                        height: 5,
-                                      ),
-                                      Row(
-                                        children: [
-                                          SizedBox(
-                                            width: 5,
-                                          ),
-                                          Container(
-                                            height: 13,
-                                            width: 25,
-                                            color: merah1,
-                                            child: Text(
-                                              "6%",
-                                              style: TextStyle(
-                                                  fontSize: 10, color: merah),
-                                            ),
+                                              Container(
+                                                child: Text(
+                                                  "Rp 1.000",
+                                                  style: TextStyle(
+                                                      fontSize: 10,
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                ),
+                                              ),
+                                            ],
                                           ),
                                           SizedBox(
-                                            width: 5,
+                                            height: 5,
                                           ),
-                                          Container(
-                                            child: Text(
-                                              "Rp 109.900",
-                                              style: TextStyle(
-                                                  fontSize: 10,
-                                                  color: Colors.grey,
-                                                  decoration: TextDecoration
-                                                      .lineThrough),
-                                            ),
+                                          Row(
+                                            children: [
+                                              SizedBox(
+                                                width: 5,
+                                              ),
+                                              Container(
+                                                height: 13,
+                                                width: 25,
+                                                color: merah1,
+                                                child: Text(
+                                                  "92%",
+                                                  style: TextStyle(
+                                                      fontSize: 10,
+                                                      color: merah),
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                width: 5,
+                                              ),
+                                              Container(
+                                                child: Text(
+                                                  "Rp 12.546",
+                                                  style: TextStyle(
+                                                      fontSize: 10,
+                                                      color: Colors.grey,
+                                                      decoration: TextDecoration
+                                                          .lineThrough),
+                                                ),
+                                              ),
+                                            ],
                                           ),
-                                        ],
-                                      ),
-                                      SizedBox(
-                                        height: 7,
-                                      ),
-                                      Row(
-                                        children: [
                                           SizedBox(
-                                            width: 5,
+                                            height: 7,
                                           ),
-                                          Container(
-                                              child: Image.asset(
-                                                  "assets/image/benar.png")),
-                                          Container(
-                                            child: Text("Jakarta Timur"),
+                                          Row(
+                                            children: [
+                                              SizedBox(
+                                                width: 5,
+                                              ),
+                                              Container(
+                                                  child: Image.asset(
+                                                      "assets/image/benar.png")),
+                                              Container(
+                                                child: Text("Kab.Tangerang"),
+                                              )
+                                            ],
+                                          ),
+                                          SizedBox(
+                                            height: 7,
+                                          ),
+                                          Row(
+                                            children: [
+                                              SizedBox(
+                                                width: 4,
+                                              ),
+                                              Container(
+                                                margin: EdgeInsets.only(
+                                                    bottom: 5, top: 10),
+                                                child: StepProgressIndicator(
+                                                  totalSteps: 100,
+                                                  currentStep: 80,
+                                                  size: 5,
+                                                  padding: 0,
+                                                  selectedColor:
+                                                      Colors.red.shade600,
+                                                  unselectedColor:
+                                                      Color(0xffeeeeee),
+                                                  roundedEdges:
+                                                      Radius.circular(2),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              Container(
+                                                margin:
+                                                    EdgeInsets.only(left: 6),
+                                                child: Text(
+                                                  "segera habis",
+                                                  style: TextStyle(
+                                                      fontSize: 10,
+                                                      fontWeight:
+                                                          FontWeight.normal),
+                                                ),
+                                              ),
+                                            ],
                                           )
                                         ],
                                       ),
-                                      SizedBox(
-                                        height: 7,
-                                      ),
-                                      Row(
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                Row(
+                                  children: [
+                                    Container(
+                                      width: 148,
+                                      height: 245,
+                                      color: Colors.white,
+                                      margin: EdgeInsets.only(left: 10),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
                                         children: [
+                                          Image.asset(
+                                              "assets/image/indomie.png"),
                                           SizedBox(
-                                            width: 4,
+                                            height: 5,
                                           ),
-                                          Container(
-                                            margin: EdgeInsets.only(
-                                                bottom: 5, top: 10),
-                                            child: StepProgressIndicator(
-                                              totalSteps: 100,
-                                              currentStep: 30,
-                                              size: 5,
-                                              padding: 0,
-                                              selectedColor:
-                                                  Colors.red.shade600,
-                                              unselectedColor:
-                                                  Color(0xffeeeeee),
-                                              roundedEdges: Radius.circular(2),
-                                            ),
+                                          Row(
+                                            children: [
+                                              SizedBox(
+                                                width: 5,
+                                              ),
+                                              Container(
+                                                child: Text(
+                                                  "Rp 103.000",
+                                                  style: TextStyle(
+                                                    fontSize: 10,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
                                           ),
+                                          SizedBox(
+                                            height: 5,
+                                          ),
+                                          Row(
+                                            children: [
+                                              SizedBox(
+                                                width: 5,
+                                              ),
+                                              Container(
+                                                height: 13,
+                                                width: 25,
+                                                color: merah1,
+                                                child: Text(
+                                                  "6%",
+                                                  style: TextStyle(
+                                                      fontSize: 10,
+                                                      color: merah),
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                width: 5,
+                                              ),
+                                              Container(
+                                                child: Text(
+                                                  "Rp 109.900",
+                                                  style: TextStyle(
+                                                      fontSize: 10,
+                                                      color: Colors.grey,
+                                                      decoration: TextDecoration
+                                                          .lineThrough),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          SizedBox(
+                                            height: 7,
+                                          ),
+                                          Row(
+                                            children: [
+                                              SizedBox(
+                                                width: 5,
+                                              ),
+                                              Container(
+                                                  child: Image.asset(
+                                                      "assets/image/benar.png")),
+                                              Container(
+                                                child: Text("Jakarta Timur"),
+                                              )
+                                            ],
+                                          ),
+                                          SizedBox(
+                                            height: 7,
+                                          ),
+                                          Row(
+                                            children: [
+                                              SizedBox(
+                                                width: 4,
+                                              ),
+                                              Container(
+                                                margin: EdgeInsets.only(
+                                                    bottom: 5, top: 10),
+                                                child: StepProgressIndicator(
+                                                  totalSteps: 100,
+                                                  currentStep: 30,
+                                                  size: 5,
+                                                  padding: 0,
+                                                  selectedColor:
+                                                      Colors.red.shade600,
+                                                  unselectedColor:
+                                                      Color(0xffeeeeee),
+                                                  roundedEdges:
+                                                      Radius.circular(2),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              Container(
+                                                margin:
+                                                    EdgeInsets.only(left: 6),
+                                                child: Text(
+                                                  "Tersedia",
+                                                  style: TextStyle(
+                                                      fontSize: 10,
+                                                      fontWeight:
+                                                          FontWeight.normal),
+                                                ),
+                                              ),
+                                            ],
+                                          )
                                         ],
                                       ),
-                                      Row(
-                                        children: [
-                                          Container(
-                                            margin: EdgeInsets.only(left: 6),
-                                            child: Text(
-                                              "Tersedia",
-                                              style: TextStyle(
-                                                  fontSize: 10,
-                                                  fontWeight:
-                                                      FontWeight.normal),
-                                            ),
-                                          ),
-                                        ],
-                                      )
-                                    ],
-                                  ),
+                                    ),
+                                  ],
                                 ),
                               ],
                             ),
-                          ],
-                        )),
-                  ],
+                          )),
+                    ],
+                  ),
                 ),
                 Row(
                   children: [
@@ -492,529 +514,543 @@ class HomeView extends GetView<HomeController> {
                 ),
                 Column(
                   children: [
-                    Row(
-                      children: [
-                        Container(
-                          margin: EdgeInsets.only(left: 35),
-                          child: Row(
-                            children: [Image.asset("assets/image/oh.png")],
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: [
+                          Container(
+                            margin: EdgeInsets.only(left: 25),
+                            child: Row(
+                              children: [Image.asset("assets/image/oh.png")],
+                            ),
                           ),
-                        ),
-                        Container(
-                          margin: EdgeInsets.only(left: 15),
-                          child: Row(
-                            children: [Image.asset("assets/image/toserba.png")],
+                          Container(
+                            margin: EdgeInsets.only(left: 15),
+                            child: Row(
+                              children: [
+                                Image.asset("assets/image/toserba.png")
+                              ],
+                            ),
                           ),
-                        ),
-                        Container(
-                          margin: EdgeInsets.only(left: 15),
-                          child: Row(
-                            children: [Image.asset("assets/image/mega.png")],
+                          Container(
+                            margin: EdgeInsets.only(left: 15),
+                            child: Row(
+                              children: [Image.asset("assets/image/mega.png")],
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ],
                 ),
                 SizedBox(height: 10),
-                Row(
-                  children: [
-                    Container(
-                      margin: EdgeInsets.only(left: 40),
-                      child: Text("Pilihan Promo Hari ini",
-                          style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold)),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(left: 170),
-                      child: Text("Lihat Semua",
-                          style: TextStyle(
-                              fontSize: 13,
-                              fontWeight: FontWeight.normal,
-                              color: atas)),
-                    ),
-                  ],
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: [
+                      Container(
+                        margin: EdgeInsets.only(left: 40),
+                        child: Text("Produk Pilihan Untukmu",
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold)),
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(left: 170),
+                        child: Text("Lihat Semua",
+                            style: TextStyle(
+                                fontSize: 13,
+                                fontWeight: FontWeight.normal,
+                                color: atas)),
+                      ),
+                    ],
+                  ),
                 ),
                 SizedBox(height: 10),
                 Wrap(
                   // spacing: 20,
                   // runSpacing: 20,
                   children: [
-                    Row(
-                      children: [
-                        Container(
-                          width: 158,
-                          height: 300,
-                          margin: EdgeInsets.only(
-                            left: 2,
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: [
+                          Container(
+                            width: 158,
+                            height: 300,
+                            margin: EdgeInsets.only(
+                              left: 30,
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Image.asset("assets/image/mose.png"),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Row(
+                                  children: [
+                                    SizedBox(
+                                      width: 5,
+                                    ),
+                                    Row(
+                                      children: [
+                                        Column(
+                                          children: [
+                                            SizedBox(
+                                              height: 8,
+                                            ),
+                                            Row(
+                                              children: [
+                                                Container(
+                                                  width: 100,
+                                                  child: Text(
+                                                    "Logitech G603 Lightspeed ...",
+                                                    style: TextStyle(
+                                                        fontSize: 12,
+                                                        fontWeight:
+                                                            FontWeight.normal),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            SizedBox(
+                                              height: 8,
+                                            ),
+                                            Container(
+                                              child: Text(
+                                                "Rp 609.000",
+                                                style: TextStyle(
+                                                    fontSize: 13,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    )
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 8,
+                                ),
+                                Row(
+                                  children: [
+                                    SizedBox(
+                                      width: 5,
+                                    ),
+                                    Container(
+                                      height: 13,
+                                      width: 25,
+                                      color: merah1,
+                                      child: Text(
+                                        "44%",
+                                        style: TextStyle(
+                                            fontSize: 10, color: merah),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 5,
+                                    ),
+                                    Container(
+                                      child: Text(
+                                        "Rp 1 .090.000",
+                                        style: TextStyle(
+                                            fontSize: 10,
+                                            color: Colors.grey,
+                                            decoration:
+                                                TextDecoration.lineThrough),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 7,
+                                ),
+                                Row(
+                                  children: [
+                                    SizedBox(
+                                      width: 5,
+                                    ),
+                                    Container(
+                                        child: Image.asset(
+                                            "assets/image/power.png")),
+                                    Container(
+                                      child: Text("Kab.Bandung"),
+                                    )
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 8,
+                                ),
+                                Row(
+                                  children: [
+                                    SizedBox(
+                                      width: 5,
+                                    ),
+                                    Container(
+                                      child: Image.asset(
+                                          "assets/image/Vector.png"),
+                                    ),
+                                    SizedBox(
+                                      width: 5,
+                                    ),
+                                    Container(
+                                      child: Text(
+                                        "4.8",
+                                        style: TextStyle(
+                                          fontSize: 10,
+                                          color: Colors.grey,
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 5,
+                                    ),
+                                    Container(
+                                      child: Text(
+                                        "|",
+                                        style: TextStyle(
+                                          fontSize: 10,
+                                          color: Colors.grey,
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 5,
+                                    ),
+                                    Container(
+                                      child: Text(
+                                        "Terjual 312",
+                                        style: TextStyle(
+                                          fontSize: 10,
+                                          color: Colors.grey,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Image.asset("assets/image/mose.png"),
-                              SizedBox(
-                                height: 5,
-                              ),
-                              Row(
-                                children: [
-                                  SizedBox(
-                                    width: 5,
-                                  ),
-                                  Row(
-                                    children: [
-                                      Column(
-                                        children: [
-                                          SizedBox(
-                                            height: 8,
-                                          ),
-                                          Row(
-                                            children: [
-                                              Container(
-                                                width: 100,
-                                                child: Text(
-                                                  "Logitech G603 Lightspeed ...",
-                                                  style: TextStyle(
+                          Container(
+                            width: 158,
+                            height: 300,
+                            margin: EdgeInsets.only(left: 10),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Image.asset("assets/image/mosess.png"),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Row(
+                                  children: [
+                                    SizedBox(
+                                      width: 5,
+                                    ),
+                                    Row(
+                                      children: [
+                                        Column(
+                                          children: [
+                                            SizedBox(
+                                              height: 8,
+                                            ),
+                                            Row(
+                                              children: [
+                                                Container(
+                                                  width: 100,
+                                                  child: Text(
+                                                    "Logitech G203 Mouse Gaming",
+                                                    style: TextStyle(
                                                       fontSize: 12,
                                                       fontWeight:
-                                                          FontWeight.normal),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                          SizedBox(
-                                            height: 8,
-                                          ),
-                                          Container(
-                                            child: Text(
-                                              "Rp 609.000",
-                                              style: TextStyle(
-                                                  fontSize: 13,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  )
-                                ],
-                              ),
-                              SizedBox(
-                                height: 8,
-                              ),
-                              Row(
-                                children: [
-                                  SizedBox(
-                                    width: 5,
-                                  ),
-                                  Container(
-                                    height: 13,
-                                    width: 25,
-                                    color: merah1,
-                                    child: Text(
-                                      "44%",
-                                      style:
-                                          TextStyle(fontSize: 10, color: merah),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 5,
-                                  ),
-                                  Container(
-                                    child: Text(
-                                      "Rp 1 .090.000",
-                                      style: TextStyle(
-                                          fontSize: 10,
-                                          color: Colors.grey,
-                                          decoration:
-                                              TextDecoration.lineThrough),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 7,
-                              ),
-                              Row(
-                                children: [
-                                  SizedBox(
-                                    width: 5,
-                                  ),
-                                  Container(
-                                      child: Image.asset(
-                                          "assets/image/power.png")),
-                                  Container(
-                                    child: Text("Kab.Bandung"),
-                                  )
-                                ],
-                              ),
-                              SizedBox(
-                                height: 8,
-                              ),
-                              Row(
-                                children: [
-                                  SizedBox(
-                                    width: 5,
-                                  ),
-                                  Container(
-                                    child:
-                                        Image.asset("assets/image/Vector.png"),
-                                  ),
-                                  SizedBox(
-                                    width: 5,
-                                  ),
-                                  Container(
-                                    child: Text(
-                                      "4.8",
-                                      style: TextStyle(
-                                        fontSize: 10,
-                                        color: Colors.grey,
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 5,
-                                  ),
-                                  Container(
-                                    child: Text(
-                                      "|",
-                                      style: TextStyle(
-                                        fontSize: 10,
-                                        color: Colors.grey,
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 5,
-                                  ),
-                                  Container(
-                                    child: Text(
-                                      "Terjual 312",
-                                      style: TextStyle(
-                                        fontSize: 10,
-                                        color: Colors.grey,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          width: 158,
-                          height: 300,
-                          margin: EdgeInsets.only(left: 10),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Image.asset("assets/image/mosess.png"),
-                              SizedBox(
-                                height: 5,
-                              ),
-                              Row(
-                                children: [
-                                  SizedBox(
-                                    width: 5,
-                                  ),
-                                  Row(
-                                    children: [
-                                      Column(
-                                        children: [
-                                          SizedBox(
-                                            height: 8,
-                                          ),
-                                          Row(
-                                            children: [
-                                              Container(
-                                                width: 100,
-                                                child: Text(
-                                                  "Logitech G203 Mouse Gaming",
-                                                  style: TextStyle(
-                                                    fontSize: 12,
-                                                    fontWeight:
-                                                        FontWeight.normal,
+                                                          FontWeight.normal,
+                                                    ),
                                                   ),
                                                 ),
-                                              ),
-                                            ],
-                                          ),
-                                          SizedBox(
-                                            height: 8,
-                                          ),
-                                          Container(
-                                            child: Text(
-                                              "Rp 204.000",
-                                              style: TextStyle(
-                                                  fontSize: 13,
-                                                  fontWeight: FontWeight.bold),
+                                              ],
                                             ),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  )
-                                ],
-                              ),
-                              SizedBox(
-                                height: 8,
-                              ),
-                              Row(
-                                children: [
-                                  SizedBox(
-                                    width: 5,
-                                  ),
-                                  Container(
-                                    height: 13,
-                                    width: 25,
-                                    color: merah1,
-                                    child: Text(
-                                      "46%",
-                                      style:
-                                          TextStyle(fontSize: 10, color: merah),
+                                            SizedBox(
+                                              height: 8,
+                                            ),
+                                            Container(
+                                              child: Text(
+                                                "Rp 204.000",
+                                                style: TextStyle(
+                                                    fontSize: 13,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    )
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 8,
+                                ),
+                                Row(
+                                  children: [
+                                    SizedBox(
+                                      width: 5,
                                     ),
-                                  ),
-                                  SizedBox(
-                                    width: 5,
-                                  ),
-                                  Container(
-                                    child: Text(
-                                      "Rp 379.000",
-                                      style: TextStyle(
+                                    Container(
+                                      height: 13,
+                                      width: 25,
+                                      color: merah1,
+                                      child: Text(
+                                        "46%",
+                                        style: TextStyle(
+                                            fontSize: 10, color: merah),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 5,
+                                    ),
+                                    Container(
+                                      child: Text(
+                                        "Rp 379.000",
+                                        style: TextStyle(
+                                            fontSize: 10,
+                                            color: Colors.grey,
+                                            decoration:
+                                                TextDecoration.lineThrough),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 7,
+                                ),
+                                Row(
+                                  children: [
+                                    SizedBox(
+                                      width: 5,
+                                    ),
+                                    Container(
+                                        child: Image.asset(
+                                            "assets/image/power.png")),
+                                    Container(
+                                      child: Text("Kab.Bandung"),
+                                    )
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 8,
+                                ),
+                                Row(
+                                  children: [
+                                    SizedBox(
+                                      width: 5,
+                                    ),
+                                    Container(
+                                      child: Image.asset(
+                                          "assets/image/Vector.png"),
+                                    ),
+                                    SizedBox(
+                                      width: 5,
+                                    ),
+                                    Container(
+                                      child: Text(
+                                        "4.9",
+                                        style: TextStyle(
                                           fontSize: 10,
                                           color: Colors.grey,
-                                          decoration:
-                                              TextDecoration.lineThrough),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 7,
-                              ),
-                              Row(
-                                children: [
-                                  SizedBox(
-                                    width: 5,
-                                  ),
-                                  Container(
-                                      child: Image.asset(
-                                          "assets/image/power.png")),
-                                  Container(
-                                    child: Text("Kab.Bandung"),
-                                  )
-                                ],
-                              ),
-                              SizedBox(
-                                height: 8,
-                              ),
-                              Row(
-                                children: [
-                                  SizedBox(
-                                    width: 5,
-                                  ),
-                                  Container(
-                                    child:
-                                        Image.asset("assets/image/Vector.png"),
-                                  ),
-                                  SizedBox(
-                                    width: 5,
-                                  ),
-                                  Container(
-                                    child: Text(
-                                      "4.9",
-                                      style: TextStyle(
-                                        fontSize: 10,
-                                        color: Colors.grey,
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  SizedBox(
-                                    width: 5,
-                                  ),
-                                  Container(
-                                    child: Text(
-                                      "|",
-                                      style: TextStyle(
-                                        fontSize: 10,
-                                        color: Colors.grey,
+                                    SizedBox(
+                                      width: 5,
+                                    ),
+                                    Container(
+                                      child: Text(
+                                        "|",
+                                        style: TextStyle(
+                                          fontSize: 10,
+                                          color: Colors.grey,
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  SizedBox(
-                                    width: 5,
-                                  ),
-                                  Container(
-                                    child: Text(
-                                      "Terjual 6 rb",
-                                      style: TextStyle(
-                                        fontSize: 10,
-                                        color: Colors.grey,
+                                    SizedBox(
+                                      width: 5,
+                                    ),
+                                    Container(
+                                      child: Text(
+                                        "Terjual 6 rb",
+                                        style: TextStyle(
+                                          fontSize: 10,
+                                          color: Colors.grey,
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ],
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                        Container(
-                          width: 158,
-                          height: 300,
-                          margin: EdgeInsets.only(left: 10),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Image.asset("assets/image/ultra.png"),
-                              SizedBox(
-                                height: 5,
-                              ),
-                              Row(
-                                children: [
-                                  SizedBox(
-                                    width: 5,
-                                  ),
-                                  Row(
-                                    children: [
-                                      Column(
-                                        children: [
-                                          SizedBox(
-                                            height: 8,
-                                          ),
-                                          Row(
-                                            children: [
-                                              Container(
-                                                width: 100,
-                                                child: Text(
-                                                  "Logitech G240 Cloth Gaming",
-                                                  style: TextStyle(
-                                                    fontSize: 12,
-                                                    fontWeight:
-                                                        FontWeight.normal,
+                          Container(
+                            width: 158,
+                            height: 300,
+                            margin: EdgeInsets.only(left: 10),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Image.asset("assets/image/ultra.png"),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Row(
+                                  children: [
+                                    SizedBox(
+                                      width: 5,
+                                    ),
+                                    Row(
+                                      children: [
+                                        Column(
+                                          children: [
+                                            SizedBox(
+                                              height: 8,
+                                            ),
+                                            Row(
+                                              children: [
+                                                Container(
+                                                  width: 100,
+                                                  child: Text(
+                                                    "Logitech G240 Cloth Gaming",
+                                                    style: TextStyle(
+                                                      fontSize: 12,
+                                                      fontWeight:
+                                                          FontWeight.normal,
+                                                    ),
                                                   ),
                                                 ),
-                                              ),
-                                            ],
-                                          ),
-                                          SizedBox(
-                                            height: 8,
-                                          ),
-                                          Container(
-                                            child: Text(
-                                              "Rp 239.000",
-                                              style: TextStyle(
-                                                  fontSize: 13,
-                                                  fontWeight: FontWeight.bold),
+                                              ],
                                             ),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  )
-                                ],
-                              ),
-                              SizedBox(
-                                height: 8,
-                              ),
-                              Row(
-                                children: [
-                                  SizedBox(
-                                    width: 5,
-                                  ),
-                                  Container(
-                                    height: 13,
-                                    width: 25,
-                                    color: merah1,
-                                    child: Text(
-                                      "32%",
-                                      style:
-                                          TextStyle(fontSize: 10, color: merah),
+                                            SizedBox(
+                                              height: 8,
+                                            ),
+                                            Container(
+                                              child: Text(
+                                                "Rp 239.000",
+                                                style: TextStyle(
+                                                    fontSize: 13,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    )
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 8,
+                                ),
+                                Row(
+                                  children: [
+                                    SizedBox(
+                                      width: 5,
                                     ),
-                                  ),
-                                  SizedBox(
-                                    width: 5,
-                                  ),
-                                  Container(
-                                    child: Text(
-                                      "Rp 349.000",
-                                      style: TextStyle(
+                                    Container(
+                                      height: 13,
+                                      width: 25,
+                                      color: merah1,
+                                      child: Text(
+                                        "32%",
+                                        style: TextStyle(
+                                            fontSize: 10, color: merah),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 5,
+                                    ),
+                                    Container(
+                                      child: Text(
+                                        "Rp 349.000",
+                                        style: TextStyle(
+                                            fontSize: 10,
+                                            color: Colors.grey,
+                                            decoration:
+                                                TextDecoration.lineThrough),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 7,
+                                ),
+                                Row(
+                                  children: [
+                                    SizedBox(
+                                      width: 5,
+                                    ),
+                                    Container(
+                                        child: Image.asset(
+                                            "assets/image/power.png")),
+                                    Container(
+                                      child: Text("Kab.Bandung"),
+                                    )
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 8,
+                                ),
+                                Row(
+                                  children: [
+                                    SizedBox(
+                                      width: 5,
+                                    ),
+                                    Container(
+                                      child: Image.asset(
+                                          "assets/image/Vector.png"),
+                                    ),
+                                    SizedBox(
+                                      width: 5,
+                                    ),
+                                    Container(
+                                      child: Text(
+                                        "5.0",
+                                        style: TextStyle(
                                           fontSize: 10,
                                           color: Colors.grey,
-                                          decoration:
-                                              TextDecoration.lineThrough),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 7,
-                              ),
-                              Row(
-                                children: [
-                                  SizedBox(
-                                    width: 5,
-                                  ),
-                                  Container(
-                                      child: Image.asset(
-                                          "assets/image/power.png")),
-                                  Container(
-                                    child: Text("Kab.Bandung"),
-                                  )
-                                ],
-                              ),
-                              SizedBox(
-                                height: 8,
-                              ),
-                              Row(
-                                children: [
-                                  SizedBox(
-                                    width: 5,
-                                  ),
-                                  Container(
-                                    child:
-                                        Image.asset("assets/image/Vector.png"),
-                                  ),
-                                  SizedBox(
-                                    width: 5,
-                                  ),
-                                  Container(
-                                    child: Text(
-                                      "5.0",
-                                      style: TextStyle(
-                                        fontSize: 10,
-                                        color: Colors.grey,
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  SizedBox(
-                                    width: 5,
-                                  ),
-                                  Container(
-                                    child: Text(
-                                      "|",
-                                      style: TextStyle(
-                                        fontSize: 10,
-                                        color: Colors.grey,
+                                    SizedBox(
+                                      width: 5,
+                                    ),
+                                    Container(
+                                      child: Text(
+                                        "|",
+                                        style: TextStyle(
+                                          fontSize: 10,
+                                          color: Colors.grey,
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  SizedBox(
-                                    width: 5,
-                                  ),
-                                  Container(
-                                    child: Text(
-                                      "Terjual 312",
-                                      style: TextStyle(
-                                        fontSize: 10,
-                                        color: Colors.grey,
+                                    SizedBox(
+                                      width: 5,
+                                    ),
+                                    Container(
+                                      child: Text(
+                                        "Terjual 312",
+                                        style: TextStyle(
+                                          fontSize: 10,
+                                          color: Colors.grey,
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ],
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ],
                 ),
@@ -1697,9 +1733,11 @@ class HomeView extends GetView<HomeController> {
                   height: tinggi * 0.08,
                   margin: EdgeInsets.only(bottom: 30),
                   color: Colors.white,
-                  child: Text("Lihat Selebihnya",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(color: Colors.black, fontSize: 18)),
+                  child: TextButton(
+                      onPressed: () => Get.toNamed(Routes.DETAIL),
+                      child: Text("Lihat Selebihnya",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(color: Colors.black, fontSize: 18))),
                 ),
               ],
             ),

@@ -4,11 +4,13 @@ import 'package:get/get.dart';
 import 'package:iconly/iconly.dart';
 import '../../../../config/warna.dart';
 
+import '../../../controllers/auth_controller_controller.dart';
 import '../../../routes/app_pages.dart';
 import '../controllers/sign_up_controller.dart';
 
 class SignUpView extends GetView<SignUpController> {
   final controller = Get.put(SignUpController());
+  final authController = Get.put(AuthControllerController());
   @override
   Widget build(BuildContext context) {
     double tinggi = MediaQuery.of(context).size.height;
@@ -46,6 +48,7 @@ class SignUpView extends GetView<SignUpController> {
                       Container(
                         margin: EdgeInsets.only(bottom: 20),
                         child: TextField(
+                            controller: controller.email,
                             keyboardType: TextInputType.emailAddress,
                             decoration: InputDecoration(
                                 hintText: "Enter Your Email",
@@ -101,6 +104,7 @@ class SignUpView extends GetView<SignUpController> {
                       Container(
                         margin: EdgeInsets.only(bottom: 20),
                         child: TextField(
+                            controller: controller.password,
                             obscureText: controller.showhidepw.value,
                             decoration: InputDecoration(
                                 suffixIcon: IconButton(
@@ -121,8 +125,9 @@ class SignUpView extends GetView<SignUpController> {
                         margin: EdgeInsets.only(bottom: 20),
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(primary: bgLogin2),
-                          onPressed: () {},
-                          child: Text("Login",
+                          onPressed: () => authController.register(
+                              controller.email.text, controller.password.text),
+                          child: Text("Sign up",
                               style:
                                   TextStyle(color: Colors.white, fontSize: 18)),
                         ),
@@ -166,9 +171,9 @@ class SignUpView extends GetView<SignUpController> {
                           Container(
                             width: lebar * 0.35,
                             child: ElevatedButton(
+                              onPressed: () {},
                               style: ElevatedButton.styleFrom(
                                   primary: Colors.white),
-                              onPressed: () {},
                               child: Row(
                                 children: [
                                   Image.asset("assets/image/Google.png"),
@@ -195,7 +200,7 @@ class SignUpView extends GetView<SignUpController> {
                         Text("Don’t have an account ?",
                             style: TextStyle(fontSize: 18, color: Colors.grey)),
                         TextButton(
-                            onPressed: () => Get.toNamed(Routes.LOGIN),
+                            onPressed: () => Get.toNamed(Routes.HOME),
                             child: Text("Login",
                                 style:
                                     TextStyle(fontSize: 18, color: bgLogin2)))

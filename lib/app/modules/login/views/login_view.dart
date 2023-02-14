@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
-import 'package:tokopedia/app/modules/ForgotPassword/bindings/forgot_password_binding.dart';
+import 'package:tokopedia/app/controllers/auth_controller_controller.dart';
 import 'package:tokopedia/app/routes/app_pages.dart';
 import 'package:tokopedia/config/warna.dart';
 
 import '../controllers/login_controller.dart';
 
 class LoginView extends GetView<LoginController> {
+  final controller = Get.put(LoginController());
+  final authController = Get.put(AuthControllerController());
   @override
   Widget build(BuildContext context) {
     double tinggi = MediaQuery.of(context).size.height;
@@ -46,6 +47,7 @@ class LoginView extends GetView<LoginController> {
                       Container(
                         margin: EdgeInsets.only(bottom: 20),
                         child: TextField(
+                            controller: controller.email,
                             keyboardType: TextInputType.emailAddress,
                             decoration: InputDecoration(
                                 hintText: "Enter Your Email",
@@ -62,6 +64,7 @@ class LoginView extends GetView<LoginController> {
                       Container(
                         margin: EdgeInsets.only(bottom: 20),
                         child: TextField(
+                            controller: controller.password,
                             obscureText: controller.showhidepw.value,
                             decoration: InputDecoration(
                                 suffixIcon: IconButton(
@@ -93,9 +96,8 @@ class LoginView extends GetView<LoginController> {
                         margin: EdgeInsets.only(bottom: 20),
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(primary: bgLogin2),
-                          onPressed: () {
-                            Get.toNamed("/home");
-                          },
+                          onPressed: () => authController.login(
+                              controller.email.text, controller.password.text),
                           child: Text("Login",
                               style:
                                   TextStyle(color: Colors.white, fontSize: 18)),
@@ -142,7 +144,8 @@ class LoginView extends GetView<LoginController> {
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                   primary: Colors.white),
-                              onPressed: () {},
+                              onPressed: () =>
+                                  authController.signInWithGoogle(),
                               child: Row(
                                 children: [
                                   Image.asset("assets/image/Google.png"),
@@ -181,3 +184,6 @@ class LoginView extends GetView<LoginController> {
         )));
   }
 }
+
+
+// keytool -list -v -alias androiddebugkey -keystore C:\Users\Ilham Wahyudi Siasi\.android\debug.keystore
