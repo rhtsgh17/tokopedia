@@ -1,16 +1,26 @@
+// ignore_for_file: dead_code
+
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
+import 'package:tokopedia/app/controllers/product_controller.dart';
+import 'package:tokopedia/app/controllers/slider_controller.dart';
+import 'package:iconly/iconly.dart';
 import 'package:tokopedia/config/warna.dart';
 
 import '../../../controllers/auth_controller_controller.dart';
 import '../../../routes/app_pages.dart';
+// import '../../detail/views/detail_view.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
   final authController = Get.put(AuthControllerController());
+  final sliderController = Get.put(SliderController());
+  final produkController = Get.put(ProdukController());
+  final homeController = Get.put(HomeController());
   @override
   Widget build(BuildContext context) {
     double tinggi = MediaQuery.of(context).size.height;
@@ -59,34 +69,39 @@ class HomeView extends GetView<HomeController> {
                 ],
               ),
             ),
-            Container(
-                // height: tinggi * 0.3,
-                width: lebar,
-                // color: Colors.red,
-                margin: EdgeInsets.symmetric(vertical: 20),
-                child: CarouselSlider(
-                  options: CarouselOptions(
-                      height: tinggi * 0.23,
-                      autoPlay: true,
-                      autoPlayInterval: Duration(seconds: 3)),
-                  items: [
-                    "assets/image/keju.png",
-                    "assets/image/1.png",
-                    "assets/image/belanja.png",
-                  ].map(
-                    (s) {
-                      return Builder(builder: (BuildContext context) {
-                        return Container(
-                          width: lebar,
-                          margin: EdgeInsets.symmetric(horizontal: 5.0),
-                          child: Container(
-                            child: Image.asset(s),
-                          ),
-                        );
-                      });
-                    },
-                  ).toList(),
-                )),
+            SizedBox(
+              height: 10,
+            ),
+            FutureBuilder<QuerySnapshot<Object?>>(
+                future: sliderController.getData(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.done) {
+                    var listData = snapshot.data!.docs;
+                    return Container(
+                      width: lebar,
+                      height: tinggi * 0.15,
+                      child: CarouselSlider(
+                        options: CarouselOptions(
+                            height: 400.0,
+                            autoPlay: true,
+                            autoPlayInterval: Duration(seconds: 3)),
+                        items: listData.map((i) {
+                          return Builder(builder: (BuildContext context) {
+                            return Container(
+                                width: lebar,
+                                margin: EdgeInsets.symmetric(horizontal: 5.0),
+                                child: Container(
+                                  child: Image.network((i.data()
+                                      as Map<String, dynamic>)["gambarSlider"]),
+                                ));
+                          });
+                        }).toList(),
+                      ),
+                    );
+                  } else {
+                    return SizedBox();
+                  }
+                }),
             Container(
               margin: EdgeInsets.only(top: 15),
               child: Wrap(
@@ -226,265 +241,165 @@ class HomeView extends GetView<HomeController> {
                                     ],
                                   ),
                                 ),
-                                Row(
-                                  children: [
-                                    Container(
-                                      width: 148,
-                                      height: 245,
-                                      color: Colors.white,
-                                      margin: EdgeInsets.only(left: 70),
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        children: [
-                                          Image.asset(
-                                              "assets/image/masker.png"),
-                                          SizedBox(
-                                            height: 5,
-                                          ),
-                                          Row(
-                                            children: [
-                                              SizedBox(
-                                                width: 5,
-                                              ),
-                                              Container(
-                                                child: Text(
-                                                  "Rp 1.000",
-                                                  style: TextStyle(
-                                                      fontSize: 10,
-                                                      fontWeight:
-                                                          FontWeight.bold),
+                                SingleChildScrollView(
+                                  scrollDirection: Axis.horizontal,
+                                  child: FutureBuilder<QuerySnapshot<Object?>>(
+                                    future: produkController.getDataDiskon(),
+                                    builder: (context, snapshot) {
+                                      if (snapshot.connectionState ==
+                                          // ignore: dead_code
+                                          ConnectionState.done) {
+                                        // ignore: unused_local_variable
+                                        var dataPromo = snapshot.data!.docs;
+                                        return Row(
+                                          children: List.generate(
+                                              dataPromo.length, (index) {
+                                            return InkWell(
+                                              onTap: () => Get.toNamed(Routes.DETAIL,arguments: dataPromo[index]),
+                                              child: Container(
+                                                width: 148,
+                                                height: 245,
+                                                color: Colors.white,
+                                                margin: EdgeInsets.only(left: 30),
+                                                child: Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.start,
+                                                  children: [
+                                                    Image.network(
+                                                      (dataPromo[index].data()
+                                                              as Map<String,
+                                                                  dynamic>)[
+                                                          "gambarP"],
+                                                    ),
+                                                    SizedBox(
+                                                      height: 5,
+                                                    ),
+                                                    Row(
+                                                      children: [
+                                                        SizedBox(
+                                                          width: 5,
+                                                        ),
+                                                        Container(
+                                                          child: Text(
+                                                            "Rp 1.000",
+                                                            style: TextStyle(
+                                                                fontSize: 10,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    SizedBox(
+                                                      height: 5,
+                                                    ),
+                                                    Row(
+                                                      children: [
+                                                        SizedBox(
+                                                          width: 5,
+                                                        ),
+                                                        Container(
+                                                          height: 13,
+                                                          width: 25,
+                                                          color: merah1,
+                                                          child: Text(
+                                                            "92%",
+                                                            style: TextStyle(
+                                                                fontSize: 10,
+                                                                color: merah),
+                                                          ),
+                                                        ),
+                                                        SizedBox(
+                                                          width: 5,
+                                                        ),
+                                                        Container(
+                                                          child: Text(
+                                                            "Rp 12.546",
+                                                            style: TextStyle(
+                                                                fontSize: 10,
+                                                                color:
+                                                                    Colors.grey,
+                                                                decoration:
+                                                                    TextDecoration
+                                                                        .lineThrough),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    SizedBox(
+                                                      height: 7,
+                                                    ),
+                                                    Row(
+                                                      children: [
+                                                        SizedBox(
+                                                          width: 5,
+                                                        ),
+                                                        Container(
+                                                            child: Image.asset(
+                                                                "assets/image/benar.png")),
+                                                        Container(
+                                                          child: Text(
+                                                              "Kab.Tangerang"),
+                                                        )
+                                                      ],
+                                                    ),
+                                                    SizedBox(
+                                                      height: 7,
+                                                    ),
+                                                    Row(
+                                                      children: [
+                                                        SizedBox(
+                                                          width: 4,
+                                                        ),
+                                                        Container(
+                                                          margin: EdgeInsets.only(
+                                                              bottom: 5, top: 10),
+                                                          child:
+                                                              StepProgressIndicator(
+                                                            totalSteps: 100,
+                                                            currentStep: 80,
+                                                            size: 5,
+                                                            padding: 0,
+                                                            selectedColor: Colors
+                                                                .red.shade600,
+                                                            unselectedColor:
+                                                                Color(0xffeeeeee),
+                                                            roundedEdges:
+                                                                Radius.circular(
+                                                                    2),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    Row(
+                                                      children: [
+                                                        Container(
+                                                          margin: EdgeInsets.only(
+                                                              left: 6),
+                                                          child: Text(
+                                                            "segera habis",
+                                                            style: TextStyle(
+                                                                fontSize: 10,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .normal),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    )
+                                                  ],
                                                 ),
                                               ),
-                                            ],
-                                          ),
-                                          SizedBox(
-                                            height: 5,
-                                          ),
-                                          Row(
-                                            children: [
-                                              SizedBox(
-                                                width: 5,
-                                              ),
-                                              Container(
-                                                height: 13,
-                                                width: 25,
-                                                color: merah1,
-                                                child: Text(
-                                                  "92%",
-                                                  style: TextStyle(
-                                                      fontSize: 10,
-                                                      color: merah),
-                                                ),
-                                              ),
-                                              SizedBox(
-                                                width: 5,
-                                              ),
-                                              Container(
-                                                child: Text(
-                                                  "Rp 12.546",
-                                                  style: TextStyle(
-                                                      fontSize: 10,
-                                                      color: Colors.grey,
-                                                      decoration: TextDecoration
-                                                          .lineThrough),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                          SizedBox(
-                                            height: 7,
-                                          ),
-                                          Row(
-                                            children: [
-                                              SizedBox(
-                                                width: 5,
-                                              ),
-                                              Container(
-                                                  child: Image.asset(
-                                                      "assets/image/benar.png")),
-                                              Container(
-                                                child: Text("Kab.Tangerang"),
-                                              )
-                                            ],
-                                          ),
-                                          SizedBox(
-                                            height: 7,
-                                          ),
-                                          Row(
-                                            children: [
-                                              SizedBox(
-                                                width: 4,
-                                              ),
-                                              Container(
-                                                margin: EdgeInsets.only(
-                                                    bottom: 5, top: 10),
-                                                child: StepProgressIndicator(
-                                                  totalSteps: 100,
-                                                  currentStep: 80,
-                                                  size: 5,
-                                                  padding: 0,
-                                                  selectedColor:
-                                                      Colors.red.shade600,
-                                                  unselectedColor:
-                                                      Color(0xffeeeeee),
-                                                  roundedEdges:
-                                                      Radius.circular(2),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                          Row(
-                                            children: [
-                                              Container(
-                                                margin:
-                                                    EdgeInsets.only(left: 6),
-                                                child: Text(
-                                                  "segera habis",
-                                                  style: TextStyle(
-                                                      fontSize: 10,
-                                                      fontWeight:
-                                                          FontWeight.normal),
-                                                ),
-                                              ),
-                                            ],
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(
-                                  width: 10,
-                                ),
-                                Row(
-                                  children: [
-                                    Container(
-                                      width: 148,
-                                      height: 245,
-                                      color: Colors.white,
-                                      margin: EdgeInsets.only(left: 10),
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        children: [
-                                          Image.asset(
-                                              "assets/image/indomie.png"),
-                                          SizedBox(
-                                            height: 5,
-                                          ),
-                                          Row(
-                                            children: [
-                                              SizedBox(
-                                                width: 5,
-                                              ),
-                                              Container(
-                                                child: Text(
-                                                  "Rp 103.000",
-                                                  style: TextStyle(
-                                                    fontSize: 10,
-                                                    fontWeight: FontWeight.bold,
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                          SizedBox(
-                                            height: 5,
-                                          ),
-                                          Row(
-                                            children: [
-                                              SizedBox(
-                                                width: 5,
-                                              ),
-                                              Container(
-                                                height: 13,
-                                                width: 25,
-                                                color: merah1,
-                                                child: Text(
-                                                  "6%",
-                                                  style: TextStyle(
-                                                      fontSize: 10,
-                                                      color: merah),
-                                                ),
-                                              ),
-                                              SizedBox(
-                                                width: 5,
-                                              ),
-                                              Container(
-                                                child: Text(
-                                                  "Rp 109.900",
-                                                  style: TextStyle(
-                                                      fontSize: 10,
-                                                      color: Colors.grey,
-                                                      decoration: TextDecoration
-                                                          .lineThrough),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                          SizedBox(
-                                            height: 7,
-                                          ),
-                                          Row(
-                                            children: [
-                                              SizedBox(
-                                                width: 5,
-                                              ),
-                                              Container(
-                                                  child: Image.asset(
-                                                      "assets/image/benar.png")),
-                                              Container(
-                                                child: Text("Jakarta Timur"),
-                                              )
-                                            ],
-                                          ),
-                                          SizedBox(
-                                            height: 7,
-                                          ),
-                                          Row(
-                                            children: [
-                                              SizedBox(
-                                                width: 4,
-                                              ),
-                                              Container(
-                                                margin: EdgeInsets.only(
-                                                    bottom: 5, top: 10),
-                                                child: StepProgressIndicator(
-                                                  totalSteps: 100,
-                                                  currentStep: 30,
-                                                  size: 5,
-                                                  padding: 0,
-                                                  selectedColor:
-                                                      Colors.red.shade600,
-                                                  unselectedColor:
-                                                      Color(0xffeeeeee),
-                                                  roundedEdges:
-                                                      Radius.circular(2),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                          Row(
-                                            children: [
-                                              Container(
-                                                margin:
-                                                    EdgeInsets.only(left: 6),
-                                                child: Text(
-                                                  "Tersedia",
-                                                  style: TextStyle(
-                                                      fontSize: 10,
-                                                      fontWeight:
-                                                          FontWeight.normal),
-                                                ),
-                                              ),
-                                            ],
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                                            );
+                                          }),
+                                        );
+                                      } else {
+                                        return SizedBox();
+                                      }
+                                    },
+                                  ),
+                                )
                               ],
                             ),
                           )),
@@ -1728,6 +1643,59 @@ class HomeView extends GetView<HomeController> {
                     ),
                   ],
                 ),
+                SizedBox(
+                  height: 10,
+                ),
+                FutureBuilder<QuerySnapshot<Object?>>(
+                    future: produkController.getProduk(),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.done) {
+                        var produkData = snapshot.data!.docs;
+                        // print(produkData.);
+
+                        print(
+                            "=========================================================");
+                        return Container(
+                            margin: EdgeInsets.only(top: 10),
+                            width: lebar,
+
+                            // decoration: BoxDecoration(color: Colors.red),
+                            child: Container(
+                              padding: EdgeInsets.symmetric(horizontal: 15),
+                              // margin: EdgeInsets.fromLTRB(5, 0, right, bottom),
+                              // margin: EdgeInsets.fromLTRB(left, top, right, bottom),
+                              child: Wrap(
+                                spacing: 0,
+                                runSpacing: 0,
+                                children:
+                                    List.generate(produkData.length, (index) {
+                                  return produk(
+                                    lebar,
+                                    lebar * 0.35,
+                                    tinggi,
+                                    namaP: (produkData[index].data()
+                                        as Map<String, dynamic>)["namaP"],
+                                    descP: (produkData[index].data()
+                                        as Map<String, dynamic>)["descP"],
+                                    diskonP: (produkData[index].data()
+                                            as Map<String, dynamic>)["diskonP"]
+                                        .toString(),
+                                    gambarP: (produkData[index].data()
+                                        as Map<String, dynamic>)["gambarP"],
+                                    hargaP: (produkData[index].data()
+                                            as Map<String, dynamic>)["hargaP"]
+                                        .toString(),
+                                    hargaFix: (produkData[index].data()
+                                            as Map<String, dynamic>)["hargaFix"]
+                                        .toString(),
+                                  );
+                                }),
+                              ),
+                            ));
+                      } else {
+                        return CircularProgressIndicator();
+                      }
+                    }),
                 Container(
                   width: 360,
                   height: tinggi * 0.08,
@@ -1796,4 +1764,112 @@ Widget pilihan(lebar, warna, warna2, judul, warna3) {
       )
     ]),
   );
+}
+
+Widget produk(lebar, double lebar2, tinggi,
+    {gambarP, hargaP, diskonP, hargaFix, namaP, descP}) {
+  return InkWell(
+      onTap: () => Get.toNamed(Routes.DETAIL),
+      child: Container(
+          height: tinggi * 0.36,
+          width: lebar2,
+          margin: EdgeInsets.fromLTRB(0, 15, 12, 15),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(12),
+            boxShadow: [
+              BoxShadow(
+                color: shadow,
+                blurRadius: 8,
+                offset: Offset(0, 4),
+              )
+            ],
+          ),
+          child: Column(
+            children: [
+              Container(
+                width: lebar,
+                height: tinggi * 0.19,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(12),
+                    topRight: Radius.circular(12),
+                  ),
+                  image: DecorationImage(
+                      image: NetworkImage(
+                        gambarP,
+                      ),
+                      fit: BoxFit.cover),
+                ),
+              ),
+              Container(
+                width: lebar,
+                height: tinggi * 0.163,
+                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 10),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(12),
+                    bottomRight: Radius.circular(12),
+                  ),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      hargaP,
+                      style:
+                          TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+                    ),
+                    SizedBox(
+                      height: tinggi * 0.006,
+                    ),
+                    Row(
+                      children: [
+                        Container(
+                          width: 60,
+                          height: 20,
+                          margin: EdgeInsets.only(right: 6),
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(1),
+                            color: bgCashback,
+                          ),
+                          child: Text(
+                            'Cashback',
+                            style: TextStyle(
+                              color: bgNav,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 12,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: tinggi * 0.006,
+                    ),
+                    SizedBox(
+                      height: tinggi * 0.011,
+                    ),
+                    Row(
+                      children: [
+                        Container(
+                          margin: EdgeInsets.only(right: 3),
+                          child: Icon(
+                            IconlyBold.star,
+                            color: star,
+                            size: 14,
+                          ),
+                        ),
+                        Text(
+                          '4.8 | Terjual 312',
+                          style: TextStyle(color: search, fontSize: 13),
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          )));
 }

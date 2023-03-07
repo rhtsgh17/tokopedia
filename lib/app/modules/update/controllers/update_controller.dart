@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class UpdateController extends GetxController {
+  // ignore: todo
   //TODO: Implement UpdateDataController
   final listData = Get.arguments;
   RxBool aktif = true.obs;
@@ -9,11 +10,11 @@ class UpdateController extends GetxController {
   TextEditingController gambar = TextEditingController();
   TextEditingController keterangan = TextEditingController();
   final count = 0.obs;
+
+  
   @override
   void onInit() {
     super.onInit();
-    gambar.text = (listData.data() as Map<String, dynamic>)["gambarSlider"];
-    keterangan.text = (listData.data() as Map<String, dynamic>)["ketSlider"];
   }
 
   @override

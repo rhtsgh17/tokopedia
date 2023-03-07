@@ -1,3 +1,4 @@
+import 'dart:html';
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -12,17 +13,20 @@ import 'package:file_picker/file_picker.dart';
 import "package:firebase_storage/firebase_storage.dart";
 import '../routes/app_pages.dart';
 
-class SliderController extends GetxController {
+class DetailController extends GetxController {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   FirebaseStorage storage = FirebaseStorage.instance;
   String urls = "";
-  File? path;
-  addData(bool activeSlider, String gambarSlider, String ketSlider) async {
-    CollectionReference slider = firestore.collection("slider");
+  // File? path;
+  addData( String gambarP, int hargaP,
+      String descP) async {
+    CollectionReference slider = firestore.collection("detail");
     final sliderData = {
-      "aktifSlider": activeSlider,
-      "gambarSlider": gambarSlider,
-      "ketSlider": ketSlider
+  
+      "gambarP": gambarP,
+      "hargaP": hargaP,
+    
+      "descP": descP
     };
 
 // Add a new document with a generated ID
@@ -35,21 +39,31 @@ class SliderController extends GetxController {
     }
   }
 
-  Future<QuerySnapshot<Object?>> getData() async {
-    CollectionReference slider = firestore.collection("slider");
-    return await slider.get();
+  Future<QuerySnapshot<Object?>> getProduk() async {
+    CollectionReference detail = firestore.collection("detail");
+    try {
+      await detail.get().then((Event) {
+        for (var doc in Event.docs) {
+          Get.defaultDialog(
+              title: "Berhasil", middleText: "Berhasil menambahkan data");
+        }
+        return Event;
+      });
+    } catch (err) {}
+    return await detail.get();
   }
 
-  updateData(String id, bool activeSlider, String ketSlider,
-      String gambarSlider) async {
+  updateData( int hargaP,
+      String descP, String gambarP) async {
     try {
-      final sliderData = {
-        "aktifSlider": activeSlider,
-        "gambarSlider": gambarSlider,
-        "ketSlider": ketSlider
+      final detailData = {
+     
+        "gambarP": gambarP,
+        "hargaP": hargaP,
+        "descP": descP
       };
-      DocumentReference slider = firestore.collection('slider').doc(id);
-      await slider.update(sliderData);
+      DocumentReference slider = firestore.collection('produk').doc();
+      await slider.update(detailData);
       Get.defaultDialog(
           title: "Data Updated :)", middleText: 'data update success');
     } catch (e) {
@@ -87,13 +101,13 @@ class SliderController extends GetxController {
     FilePickerResult? result = await FilePicker.platform.pickFiles();
 
     if (result != null) {
-      File file = File(result.files.single.path!);
+      // File file = File(result.files.single.path!);
       String namaFile = result.files.first.name;
       urls = namaFile;
-      path = file;
+      // path = file;
 
       try {
-        await storage.ref("${namaFile}").putFile(file);
+        // await storage.ref("${namaFile}").putFile(file);
         final data = await storage.ref("${namaFile}").getDownloadURL();
 
         return data;
@@ -104,4 +118,34 @@ class SliderController extends GetxController {
       print("tidak mengirim");
     }
   }
+
+  filterData() async {
+    final result = await firestore
+        .collection("produk")
+        // .where('hargaP', isGreaterThan: 100.000)
+        // .orderBy('harga', descending: true)
+        // .limit(5)
+        // .limitToLast(5)
+        .where('flashSale', isEqualTo: true)
+        .get();
+    print(result.docs.length);
+    print("****************************");
+
+    if (result.docs.length > 0) {
+      result.docs.forEach((element) {
+        print(element.data());
+      });
+    } else {
+      print("objek tidak ada");
+    }
+  }
+
+  Future<QuerySnapshot<Object?>> getDataDetail() async {
+    Query<Map<String, dynamic>> produk =
+        firestore.collection("detail")
+        .where('flashSale', isEqualTo: true);
+
+    return await produk.get();
+  }
 }
+

@@ -1,15 +1,21 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+
+// ignore: unused_import
+// import '../../sliderData/controllers/slider_data_controller.dart';
+import '../controllers/produk_data_controller.dart';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'package:iconly/iconly.dart';
 import 'package:tokopedia/app/controllers/slider_controller.dart';
 import 'package:tokopedia/app/routes/app_pages.dart';
 
-import '../controllers/slider_data_controller.dart';
 
-class SliderDataView extends GetView<SliderDataController> {
-  final controller = Get.put(SliderDataController());
+
+class ProdukDataView extends GetView<ProdukDataController> {
+  final controller = Get.put(ProdukDataController());
   final controllerSlider = Get.put(SliderController());
   @override
   Widget build(BuildContext context) {
@@ -31,10 +37,22 @@ class SliderDataView extends GetView<SliderDataController> {
                     style: ListTileStyle.drawer,
                     onTap: () =>
                         Get.toNamed(Routes.UPDATE, arguments: listData[index]),
+                    leading: Text(
+                      (listData[index].data()
+                          as Map<String, dynamic>)["gambarSlider"],
+                    ),
                     title: Text((listData[index].data()
-                        as Map<String, dynamic>)["gambarSlider"]),
-                    subtitle: Text((listData[index].data()
-                        as Map<String, dynamic>)['ketSlider']),
+                        as Map<String, dynamic>)["ketSlider"]),
+                    subtitle: Text(
+                      (listData[index].data()
+                              as Map<String, dynamic>)['aktifSlider']
+                          .toString(),
+                      style: TextStyle(
+                          color: (listData[index].data()
+                                  as Map<String, dynamic>)['aktifSlider']
+                              ? Colors.green
+                              : Colors.red),
+                    ),
                     trailing: InkWell(
                       onTap: () =>
                           controllerSlider.deleteData(listData[index].id),
@@ -46,7 +64,6 @@ class SliderDataView extends GetView<SliderDataController> {
                   ),
                 ),
               );
-              // return Text("data");
             } else {
               return Center(
                 child: CircularProgressIndicator(),
@@ -54,10 +71,11 @@ class SliderDataView extends GetView<SliderDataController> {
             }
           }),
       floatingActionButton: FloatingActionButton(
-          onPressed: () => Get.toNamed(Routes.UPDATE),
-          child: Icon(
-            Icons.add,
-          )),
+        onPressed: () => controllerSlider.addData(true, "Instagram",
+            "https://png.pngtree.com/png-vector/20221018/ourmid/pngtree-instagram-icon-png-image_6315974.png"),
+        child: Icon(Icons.add),
+      ),
     );
   }
 }
+

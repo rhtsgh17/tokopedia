@@ -32,7 +32,7 @@ class HomeAdminView extends GetView<HomeAdminController> {
                     ),
                     CustomMenu(
                       icon: "assets/image/hedset.png",
-                      text: "Elektronik",
+                      text: "produk data",
                     ),
                   ],
                 ),

@@ -1,3 +1,4 @@
+// ignore: unused_import
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -28,6 +29,9 @@ class UpdateView extends GetView<UpdateController> {
         body: Obx(
           () => Column(
             children: [
+              ElevatedButton(
+                  onPressed: () => controllerSlider.addPhoto(),
+                  child: Text("Upload Gambar")),
               Container(
                 margin: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
                 child: TextField(
